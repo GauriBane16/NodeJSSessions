@@ -1,4 +1,3 @@
-
 const events = require("events");
 
 const eventEmitter = new events.EventEmitter();
@@ -8,15 +7,13 @@ class Classroom
     
     constructor()
     {
-        eventEmitter.on("doorOpen",function(event){
-            console.log("Door Opened");
-            console.log(event);
-        });
+        eventEmitter.on("doorOpen",this.commonHandler);
+        eventEmitter.on("doorClose",this.commonHandler);
+    }
 
-        eventEmitter.on("doorClose",function(event){
-            console.log("Door closed");
-            console.log(event);
-        })
+    commonHandler= (event)=>{
+        console.log("event fired");
+        console.log(event);
     }
 
     openDoor()
